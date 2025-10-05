@@ -9,9 +9,6 @@ plugins {
 dependencies {
     // This tells the desktopApp to use the "desktop" variant of the shared module
     implementation(project(":shared"))
-    // This dependency is provided by the 'jetbrains.compose' plugin and requires no .toml entry.
-    // It provides the 'Window', 'application', etc., functions.
-    implementation(compose.desktop.currentOs)
 }
 
 // Configure the desktop application

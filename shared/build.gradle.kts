@@ -53,8 +53,9 @@ kotlin {
             // Tell Gradle this source set exists and depends on commonMain
             dependsOn(commonMain)
             dependencies {
-                // Compose dependency for Desktop
-                implementation(compose.desktop.currentOs)
+                // This dependency is provided by the 'jetbrains.compose' plugin.
+                // It provides the 'Window', 'application', etc., functions.
+                api(compose.desktop.currentOs)
                 // Ktor engine for Desktop
                 implementation(libs.ktor.client.cio)
             }
