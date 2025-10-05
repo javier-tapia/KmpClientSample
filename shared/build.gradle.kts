@@ -36,8 +36,7 @@ kotlin {
                 // Dependencies for shared UI and logic
                 implementation(compose.runtime)
                 implementation(compose.foundation)
-                // For Material Design 1
-                implementation(compose.material)
+                implementation(compose.material3)
                 implementation(libs.coroutines.core)
                 implementation(libs.ktor.client.core)
                 implementation(libs.ktor.client.content.negotiation)
