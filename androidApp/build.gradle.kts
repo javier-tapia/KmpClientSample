@@ -41,7 +41,7 @@ android {
     // Set the Kotlin Compiler Extension version, critical for Compose on Android
     composeOptions {
         // This version MUST be compatible with the Kotlin version
-        kotlinCompilerExtensionVersion = "1.5.10"
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 }
 
