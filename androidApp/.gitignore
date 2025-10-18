@@ -1,1 +1,3 @@
 /build
+# Android debug network config
+/src/debug/res/xml/network_security_config.xml
