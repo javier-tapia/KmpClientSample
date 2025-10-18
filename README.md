@@ -1,6 +1,17 @@
-# KmpClientSample
+<h1>KmpClientSample</h1>
 
 Este es un proyecto de ejemplo de Kotlin Multiplatform (KMP) que demuestra una arquitectura cliente-servidor.
+
+<!-- TOC -->
+  * [Descripción General](#descripción-general)
+  * [Arquitectura](#arquitectura)
+  * [Interacción de los Módulos](#interacción-de-los-módulos)
+  * [Estructura de los Módulos: ¿Por qué no todo en `shared`?](#estructura-de-los-módulos-por-qué-no-todo-en-shared)
+  * ["Targets" en el Módulo `shared`](#targets-en-el-módulo-shared)
+<!-- TOC -->
+
+---
+
 
 ## Descripción General
 
@@ -25,7 +36,7 @@ La arquitectura del proyecto se divide en los siguientes módulos:
 
 Este enfoque permite un desarrollo más rápido y consistente, ya que la lógica de negocio y, en gran medida, la UI, solo necesitan escribirse una vez.
 
-## Estructura de Módulos: ¿Por qué no todo en `shared`?
+## Estructura de los Módulos: ¿Por qué no todo en `shared`?
 
 Aunque el módulo `shared` contiene la mayor parte del código, los módulos específicos de la plataforma como `androidApp` y `desktopApp` son esenciales por varias razones:
 
