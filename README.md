@@ -1,4 +1,4 @@
-<h1>KmpClientSample</h1>
+<h1>KMP Client Sample</h1>
 
 Este es un proyecto de ejemplo de Kotlin Multiplatform (KMP) que demuestra una arquitectura cliente-servidor.
 
@@ -8,6 +8,7 @@ Este es un proyecto de ejemplo de Kotlin Multiplatform (KMP) que demuestra una a
   * [Interacción de los Módulos](#interacción-de-los-módulos)
   * [Estructura de los Módulos: ¿Por qué no todo en `shared`?](#estructura-de-los-módulos-por-qué-no-todo-en-shared)
   * ["Targets" en el Módulo `shared`](#targets-en-el-módulo-shared)
+  * [Relación entre "Target" y "Source Set"](#relación-entre-target-y-source-set)
 <!-- TOC -->
 
 ---
@@ -59,3 +60,19 @@ En un proyecto Kotlin Multiplatform, un "target" representa una plataforma espec
     -   **`androidMain`**, **`desktopMain`**, etc.: Contienen la implementación específica de la plataforma. A menudo, esto se usa para implementar declaraciones `expect` definidas en `commonMain` con su correspondiente `actual` en el _source set_ de la plataforma. Esto permite que el código común "espere" una funcionalidad que será proporcionada por cada plataforma de destino.
 
 Por ejemplo, se podría tener una `expect fun getPlatformName(): String` en `commonMain`, y luego en `androidMain` una `actual fun getPlatformName(): String = "Android"`, y en `desktopMain` una `actual fun getPlatformName(): String = "Desktop"`. El código común puede llamar a `getPlatformName()` sin saber en qué plataforma se está ejecutando.
+
+## Relación entre "Target" y "Source Set"
+
+No son lo mismo, pero su relación es fundamental para entender KMP:
+
+-   Un **Target** es el **destino de la compilación**. Le dice a Kotlin ***para qué plataforma compilar*** el código (ej: `android`, `jvm`, `iosArm64`).
+
+-   Un **Source Set** es un **conjunto de carpetas con código fuente**. Le dice a Kotlin ***qué código compilar*** para uno o más targets.
+
+La regla es simple: **cuando se define un _target_, el plugin de Kotlin crea automáticamente un _source set_ para él**. Por ejemplo, el _target_ `android()` crea el _source set_ `androidMain`. El código que se coloque en la carpeta `shared/src/androidMain/kotlin` solo será visible y se compilará para el _target_ de Android.
+
+El _source set_ `commonMain` es especial: su código se compila e incluye en **todos** los _targets_ que se hayan definido. Por eso es el lugar para el código compartido.
+
+En resumen:
+
+> Los **Targets** definen el "qué" (qué plataformas). Los **Source Sets** organizan el "dónde" (dónde vive el código para esas plataformas).
